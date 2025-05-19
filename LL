@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int main() {  
+    // Define a structure for linked list nodes
+    struct node {  
+        int data;  // Stores the value of the node
+        struct node *next;  // Pointer to the next node in the list
+    } *new, *head = NULL, *temp;  
+
+    int value;  
+    char ch;  
+
+    // Loop to create new nodes until user chooses to stop
+    do {  
+        new = (struct node*)malloc(sizeof(struct node));  // Allocate memory for a new node
+        printf("Enter value: ");  
+        scanf("%d", &value);  // Read value from user
+        new->data = value;  // Assign value to the new node
+        new->next = NULL;  // Set next pointer to NULL
+
+        if (head == NULL) {  // If this is the first node
+            head = new;  // Make head point to new node
+            temp = new;  // Initialize temp for traversal
+        } else {  
+            temp->next = new;  // Link new node to previous node
+            temp = temp->next;  // Move temp to the newly added node
+        }  
+
+        printf("Add node y/n: ");  
+        scanf(" %c", &ch);  // Ask user if they want to add more nodes
+
+    } while (ch == 'y');  // Continue adding nodes if user enters 'y'
+
+    // Traverse and print the linked list
+    temp = head;  
+    while (temp != NULL) {  
+        printf("%d -> ", temp->data);  // Print node value
+        temp = temp->next;  // Move to the next node
+    }  
+
+    printf("NULL\n");  // Indicate end of the linked list
+
+    return 0;  
+}
